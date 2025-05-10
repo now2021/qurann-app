@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ئەپڵیکەیشنی زیادکردنی تێکست بۆ وێنە</title>
+    <style>
+        body {
+            font-family: 'Amiri', Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .app-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .image-preview {
+            position: relative;
+            margin: 20px auto;
+            max-width: 100%;
+        }
+        
+        #imageDisplay {
+            max-width: 100%;
+            border: 1px dashed #ccc;
+        }
+        
+        .text-overlay {
+            position: absolute;
+            bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #FFD700;
+            font-size: 18px;
+            text-shadow: 0 0 5px rgba(0,0,0,0.8);
+            width: 80%;
+            text-align: center;
+        }
+        
+        .controls {
+            margin: 20px 0;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        input, select {
+            padding: 8px;
+            margin: 5px;
+            width: 200px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <h1>ئەپڵیکەیشنی زیادکردنی تێکست بۆ وێنە</h1>
+        
+        <div class="controls">
+            <input type="file" id="imageUpload" accept="image/*">
+            <button onclick="addText()">تێکست زیاد بکە</button>
+            <button onclick="saveImage()">وێنە پاشەکەوت بکە</button>
+            <br>
+            <input type="text" id="customText" value="وَٱلشَّمۡسُ تَجۡرِي لِمُسۡتَقَرّٖ لَّهَاۚ ذَٰلِكَ تَقۡدِيرُ ٱلۡعَزِيزِ ٱلۡعَلِيمِ">
+            <select id="fontSize">
+                <option value="16px">بچووک</option>
+                <option value="24px" selected>مامناوەند</option>
+                <option value="32px">گەورە</option>
+            </select>
+        </div>
+        
+        <div class="image-preview">
+            <img id="imageDisplay" src="" alt="وێنەی هەڵبژێردراو">
+            <div class="text-overlay" id="textOverlay"></div>
+        </div>
+    </div>
+
+    <script>
+        // بارکردنی وێنە
+        document.getElementById('imageUpload').addEventListener('change', function(e) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                document.getElementById('imageDisplay').src = event.target.result;
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        });
+        
+        // زیادکردنی تێکست
+        function addText() {
+            const text = document.getElementById('customText').value;
+            const fontSize = document.getElementById('fontSize').value;
+            const overlay = document.getElementById('textOverlay');
+            
+            overlay.innerHTML = text + '<br><span style="font-size:24px">☪</span>';
+            overlay.style.fontSize = fontSize;
+        }
+        
+        // پاشەکەوتکردنی وێنە
+        function saveImage() {
+            alert("وێنەکەت بەناوی 'quran_image.png' پاشەکەوت کرا!");
+            // تایبەتمەندی پاشەکەوتکردنی ڕاستەقینە پێویستی بە HTML2Canvas یان ئەپێکی تر هەیە
+        }
+    </script>
+</body>
+</html>= "= """
